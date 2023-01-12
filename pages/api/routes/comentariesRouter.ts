@@ -13,11 +13,12 @@ export default async function comentariesRouter(
    const { method } = req
   switch (method) {
     case "GET":
-      return res.status(200).json( {name: await getComentaries()} )
+      return res.status(200).json( {'name': await getComentaries()} )
       break;
     
     case "POST":
-      return res.status(200).json( {name: await postComentaries(req.body)} )
+      let r = await postComentaries()
+      res.status(200).json( {'name': 'posteo'} )
       break;
   
     default:
