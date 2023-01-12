@@ -1,6 +1,6 @@
 const { Schema, model, default: mongoose } = require("mongoose")
 
-const comentariessSchema = new Schema({ 
+/* const comentariessSchema = new Schema({ 
     comentedBy:"",
     text:"",
     likes:{
@@ -11,22 +11,29 @@ const comentariessSchema = new Schema({
             }
         },
     answers:[]
-    })
+    }) */
 
 const comentariesSchema = new Schema({
     parentId:{
-        Type: String,
-        default: null
+        Type: String
     },
     comentarie:{
         type: String
-    },
-    answers:[comentariesSchema]
+    }
     })
 
 const postSchema = new Schema({
-        video:"",
+        video: {
+            type: String
+        },
         picture:[]
         ,
         comentariesMain:[comentariesSchema]
 })
+
+export const Post = model("Post", postSchema);
+
+
+
+
+
