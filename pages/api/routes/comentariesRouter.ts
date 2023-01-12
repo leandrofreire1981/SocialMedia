@@ -17,8 +17,9 @@ export default async function comentariesRouter(
       break;
     
     case "POST":
-      let r = await postComentaries()
-      res.status(200).json( {'name': 'posteo'} )
+      let r = await postComentaries(req.body)
+      console.log('esto es r: ', r)
+      res.status(200).json( {'name': 'hola'} )
       break;
   
     default:
