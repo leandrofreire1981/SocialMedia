@@ -8,8 +8,8 @@ export default async function userRouter (req: NextApiRequest, res: NextApiRespo
     switch (method) {
         case "GET":
             try {
-                // let users = await getUser()
-                res.status(200).json("users");
+                 let users = await getUser()
+                res.status(200).json(users);
             } catch (error) {
                 res.status(404).send("something went wrong");
                 console.log({error: error});
@@ -19,7 +19,6 @@ export default async function userRouter (req: NextApiRequest, res: NextApiRespo
             try {
                 const body = req.body;
                 let users = await postUser(body);
-                console.log("asdas");
                 res.status(201).json(users);
             } catch (error) {
                 res.status(404).send("something went wrong");
@@ -28,7 +27,10 @@ export default async function userRouter (req: NextApiRequest, res: NextApiRespo
             break;
         case "PUT":
             try {
-                let users = await putUser()
+                const {id} = req.query
+                let changes = req.body
+                console.log(id)
+                let users = await putUser(id, changes)
                 res.status(201).json(users)
             } catch (error) {
                 res.status(404).send("something went wrong")
