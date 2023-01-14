@@ -13,22 +13,23 @@ const { Schema, model, default: mongoose } = require("mongoose")
     answers:[]
     }) */
 
-const comentariesSchema = new Schema({
-    parentId:{
-        Type: String
-    },
+/* const comentariesSchema = new Schema({
     comentarie:{
         type: String
+    },
+    response: {
+        type: Array
     }
-    })
-
+})
+ */
 const postSchema = new Schema({
         video: {
             type: String
         },
-        picture:[]
-        ,
-        comentariesMain:[comentariesSchema]
+        picture:[],
+        commentariesMain:{
+            type: Array
+        }
 })
 
 export const Post = model("Post", postSchema);
