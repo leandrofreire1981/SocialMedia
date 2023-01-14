@@ -8,6 +8,7 @@ export const postUser = async (obj)=>{
 
 export const getUser = async (obj)=>{
     let users = await User.find();
+    console.log(users)
     return users;
 }
 
