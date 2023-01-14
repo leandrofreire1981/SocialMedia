@@ -128,16 +128,9 @@ export default function Home() {
 
 export async function getServerSideProps(){
   try {
-<<<<<<< Updated upstream
     console.log('conectado')
    await dbConnect()
    return {'props': {'conectado': 'toma'}}
-=======
-    console.log("asdasda")
-    await dbConnect()
-    console.log('conectado 🚀')
-    return {props:{a:"asdasd"}}
->>>>>>> Stashed changes
   } catch (error) {
     console.log('error: ', error)
   }
