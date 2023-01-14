@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import dbConnect from '../lib/dbConnect'
+import dbConnect from '../lib/dbConnect.js'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -128,9 +128,16 @@ export default function Home() {
 
 export async function getServerSideProps(){
   try {
+<<<<<<< Updated upstream
     console.log('conectado')
    await dbConnect()
    return {'props': {'conectado': 'toma'}}
+=======
+    console.log("asdasda")
+    await dbConnect()
+    console.log('conectado 🚀')
+    return {props:{a:"asdasd"}}
+>>>>>>> Stashed changes
   } catch (error) {
     console.log('error: ', error)
   }
