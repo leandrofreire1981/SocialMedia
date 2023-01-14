@@ -5,9 +5,9 @@ export async function getComentaries() {
 }
 
 export async function postComentaries(obj) {
-/*     const objectMongo = await Post(obj);
+    const objectMongo = await Post(obj);
             console.log("holaaaa ",objectMongo)
-            const result = await objectMongo.save(); */
-            return {'post comentaries': obj}
+            const result = await objectMongo.save(); 
+            return result
 
 }

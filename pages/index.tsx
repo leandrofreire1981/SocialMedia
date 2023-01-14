@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
+
   return (
     <>    
       <Head>
@@ -127,10 +128,9 @@ export default function Home() {
 
 export async function getServerSideProps(){
   try {
-    console.log("asdasda")
-    await dbConnect()
-    console.log('conectado 🚀')
-    return {props:{a:"asdasd"}}
+    console.log('conectado')
+   await dbConnect()
+   return {'props': {'conectado': 'toma'}}
   } catch (error) {
     console.log('error: ', error)
   }
