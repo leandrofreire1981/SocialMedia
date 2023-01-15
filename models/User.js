@@ -30,6 +30,9 @@ const userSchema = new Schema({
     profilePicture:{
         type: String
     },
+    profilePictureId:{
+        type: String
+    },
     photos:[photoSchema],
     friends:[]
 

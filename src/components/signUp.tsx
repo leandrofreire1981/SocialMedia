@@ -1,5 +1,7 @@
+import { profile } from "console"
 import React, { useEffect } from "react"
-import {useState} from "react"
+import {useState} from "react";
+import placeHolderImage from "../media/profile.png"
 
 
 const SignUp = () =>{
@@ -9,11 +11,12 @@ const SignUp = () =>{
         name:"",
         lastName:"",
         email:"",
-        birthDate:""
+        birthDate:"",
+        profileImage:false
     }
 
     const [userData, setUserData] = useState(defaultUserData)
-
+    const [loading, setLoading] = useState(false)
    
 
     const handleChange = (e:any)=>{
@@ -21,8 +24,22 @@ const SignUp = () =>{
         setUserData({...userData,[e.target.name]:e.target.value})
     }
 
+    function handleFileInputChange(e:any) {
+        const reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0]) 
+        reader.onloadend =  () => {
+          setUserData({...userData, [e.target.name]: reader.result})
+        }    
+    }
+
+    useEffect(()=>{
+        console.log(userData)
+    },[userData])
+
     const handleSubmit = async (e:any)=>{
         e.preventDefault()
+        if(!userData.userName&& !userData.name&&  !userData.lastName&&!userData.email&& !userData.birthDate)return alert("fill each field")
+        setLoading(true)
         let answer = await fetch("http://localhost:3000/api/routes/users",{
             method: "POST",
             headers: {
@@ -39,7 +56,7 @@ const SignUp = () =>{
         .catch(error=>{
             return "something went wrong"
         })
-        alert(answer)
+        setLoading(false)
 
     }
 
@@ -75,22 +92,36 @@ const SignUp = () =>{
                                 </div>
                             </div>
                         <div className="flex flex-col mb-2">
-                        <div className=" relative ">
-                            <input name="birthDate" value={userData.birthDate} onChange={handleChange} type="date"  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
+                            <div className=" relative ">
+                                <input name="birthDate" value={userData.birthDate} onChange={handleChange} type="date"  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
                             </div>
                         </div>
-                        <div className="flex w-full my-4">
+                        <div className="flex flex-col mb-2">
+                            <div className=" relative ">
+                                <input type='file' name='profileImage' onChange={handleFileInputChange} className="hover:cursor-pointer:"/>
+                            </div>
+                            <div>
+                                <img className="bg- bg-purple-300 w-40 h-40" src={userData.profileImage? userData.profileImage: placeHolderImage}/>
+                            </div>
+                        </div>
+                        {<div className="flex w-full my-4">
+                        {!loading?
                             <button type="submit" className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                                 Login
-                            </button>
-                        </div>
+                            </button>:
+                            <button type="button" className="py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                <svg width="20" height="20" fill="currentColor" className="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+                                    </path>
+                                </svg>
+                                loading
+                            </button>}
+                        </div>}
                     </form>      
                  <div>
             </div>
         </div>
     </div>
-
-
     )
 }
 
