@@ -19,9 +19,9 @@ export default async function userRouter (req: NextApiRequest, res: NextApiRespo
             try {
                 const body = req.body;
                 let users = await postUser(body);
-                res.status(201).json(users);
+                res.status(201).json("ok");
             } catch (error) {
-                res.status(404).send("something went wrong");
+                res.status(404).json("something went wrong");
                 console.log({error: error});
             }
             break;
@@ -29,7 +29,6 @@ export default async function userRouter (req: NextApiRequest, res: NextApiRespo
             try {
                 const {id} = req.query
                 let changes = req.body
-                console.log(id)
                 let users = await putUser(id, changes)
                 res.status(201).json(users)
             } catch (error) {
