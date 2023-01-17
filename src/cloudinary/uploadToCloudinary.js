@@ -1,13 +1,18 @@
-import {cloudinary} from ("./utils.js");
+require('dotenv').config()
+const {cloudinary} = require('./utils')
 
-export const uploadToCloudinary = async(file)=>{
+ const uploadToCloudinary = async(file)=>{
+    console.log(cloudinary)
     let ini = file.slice(0,4);
     let result;
-    if(ini === "http") result = await cloudinary.V2.uploader.upload(file)
+    if(ini === "http") result = await cloudinary.uploader.upload(file)
     else{ 
-        result = await cloudinary.V2.uploader.upload(file)
+        result = await cloudinary.uploader.upload(file)
     }
     return{
-        "imaegeId":result.public_id
+        "profilePictureId":result.public_id,
+        "profilePicture": result.secure_url
     }
 }
+
+module.exports = uploadToCloudinary;

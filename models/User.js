@@ -20,7 +20,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    age:{
+    birthDate:{
         type: String,
         required: true
     },
@@ -30,9 +30,12 @@ const userSchema = new Schema({
     profilePicture:{
         type: String
     },
+    profilePictureId:{
+        type: String
+    },
     photos:[photoSchema],
     friends:[]
 
 })
 
-export const User = model("User", userSchema);
+export const User = mongoose.models.User || model("User", userSchema);

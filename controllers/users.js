@@ -1,13 +1,20 @@
+import { fileURLToPath } from "url";
 import { User } from "/models/User.js"
+import  uploadToCloudinary  from "src/cloudinary/uploadToCloudinary.js"
 
 export const postUser = async (obj)=>{
+    const { profilePicture, profilePictureId } = await uploadToCloudinary(obj.profileImage)
+    obj.profilePictureId = profilePicture
+    obj.profilePictureId = profilePictureId
     let structure = await User(obj);
     let userCreated = await structure.save(obj);
+    console.log(userCreated)
     return userCreated;
 }
 
 export const getUser = async (obj)=>{
     let users = await User.find();
+    console.log(users)
     return users;
 }
 
