@@ -28,6 +28,7 @@ export default async function userRouter (req: NextApiRequest, res: NextApiRespo
         case "PUT":
             try {
                 const {id} = req.query
+                console.log(id)
                 let changes = req.body
                 let users = await putUser(id, changes)
                 res.status(201).json(users)
