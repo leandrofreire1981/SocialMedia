@@ -27,7 +27,7 @@ const postSchema = new Schema({
             type: String
         },
         picture:[],
-        commentariesMain:{
+        responses:{
             type: Array
         }
 })
