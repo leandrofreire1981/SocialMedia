@@ -2,7 +2,7 @@ import  { Post } from '../models/Post'
 import { Responses } from '../models/Responses'
 
 export async function getCommentaries() {
-    let res = await Post.find( {"responses._id": "bbf139382fd401b69f2"}) //let res = await Post.find({}, "commentariesMain")
+    let res = await Post.find({'_id': "63c72c799cf7801fc76ffc14"}) //let res = await Post.find({}, "commentariesMain")
     return res
 }
 
