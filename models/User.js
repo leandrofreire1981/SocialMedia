@@ -7,6 +7,15 @@ const photoSchema = new Schema({
     },
 })
 
+const contactsSchema = new Schema({
+    following:{
+       type: Array,
+    },
+    followers:{
+        type: Array,
+    },
+})
+
 const userSchema = new Schema({
     userName:{
         type:String,
@@ -34,7 +43,7 @@ const userSchema = new Schema({
         type: String
     },
     photos:[photoSchema],
-    friends:[]
+    social: contactsSchema
 
 })
 
