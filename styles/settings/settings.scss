@@ -1,0 +1,39 @@
+/*global settings*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//colors
+
+$greyLetters: rgb(73, 73, 73);
+
+//mixings
+
+@mixin flex($direction: row, $align: center, $justify: center, $wrap: nowrap){
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+    flex-wrap: $wrap;  
+
+}
+
+@mixin button($color, $background){
+    width: 100%;
+    height: 44px;
+    border-radius: 20px;
+    color: $color;
+    background: $background;
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 18px;
+    cursor: pointer;
+    &:hover{
+        opacity: .8;
+    }
+    
+}
+

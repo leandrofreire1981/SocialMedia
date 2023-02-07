@@ -1,0 +1,71 @@
+.loginContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginTextContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.loginOptionsContainer{
+    display: flex;
+    flex-direction: column;
+    h1{
+        text-align: center;
+        color: $greyLetters ;   
+    }
+    width: 100%;
+    max-width: 354px;
+    gap: 30px;
+    padding: 30px;
+}
+
+.loginButtonGithub{
+    @include button($color:rgb(250, 245, 245), $background:black);
+}
+
+.loginButtonGoogle{
+    @include button($color:rgb(88, 88, 88), $background:rgb(226, 217, 217));
+}
+
+.logginSubmit{
+    @include button($color:rgb(255, 255, 255), $background:rgb(126, 228, 131));
+    font-weight: bold;
+    border: 3px solid white;
+    box-shadow: 0 0 2px rgb(180, 178, 178);
+}
+
+.formItem{
+    text-align: center;
+    box-shadow: 0 0 2px rgb(153, 149, 149);
+    padding: 25px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loginForm{
+    max-width: 350px;
+    display: grid;
+    gap: 10px;
+    column-gap: 40px;
+}
+
+.loginInput{
+    input{
+        width: 100%;
+        outline: none;
+        border: none;
+        box-shadow: 0 0 2px rgb(153, 149, 149);
+        padding: 10px;
+        border-radius: 5px;
+    }
+}
+
+.name{
+    grid-column: span 1;
+}
