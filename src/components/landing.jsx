@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import { useRouter } from "next/router";
+import { redirect } from "next/dist/server/api-utils";
 
-const Landing = () =>{
-
+const Landing = ()=>{
+ 
      const session = useSession()
-     console.log(session)
+      console.log(session)
+      console.clear("hola me borre todo")
     //  if(session) {
     //      return (
     //          <div>
@@ -20,6 +23,14 @@ const Landing = () =>{
     //      </div>
     //  )
 
+    const router = useRouter()
+
+
+    function redirect() {
+            router.push('/accounts/signup')
+         }
+  
+
     const defaultUserData = {
         userName:"",
         password:""
@@ -28,7 +39,7 @@ const Landing = () =>{
     const [userData, setUserData] = useState(defaultUserData)
     const [loading, setLoading] = useState(false)
    
-    const handleChange = (e:any)=>{
+    const handleChange = (e)=>{
         e.preventDefault()
         setUserData({...userData,[e.target.name]:e.target.value})
     }
@@ -37,7 +48,7 @@ const Landing = () =>{
         console.log(userData)
     },[userData])
 
-    const handleSubmit = async (e:any)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
         if(!userData.userName || !userData.password)return alert("fill each field")
         setLoading(true)
@@ -66,7 +77,8 @@ const Landing = () =>{
                 <div className="loginOptionsContainer">
                         <h1>Sign in to Tok Tok</h1>
                     <button onClick={()=> signIn("github")} className="loginButtonGithub">Continue with Github</button>
-                    <button className="loginButtonGoogle">Continue with Google</button>
+                    <button onClick={()=> signIn("google")} className="loginButtonGoogle">Continue with Google</button>
+
                     <h1>or</h1>
                     <form onSubmit={handleSubmit} className="loginForm">
                         <div className="loginInput">
@@ -85,9 +97,29 @@ const Landing = () =>{
                             </button>}
                         </div>}
                     </form>
+                    <div className="logginRegister">
+                        <p>don't u have an account?</p>
+                        <button onClick={redirect}>register here</button>
+                    </div>
                 </div>   
             </div>
     )
  }
 
-export default Landing
+ export default Landing
+
+ export async function getServerSideProps(context){
+
+    const session = await getSession(context)
+    console.trace("asdasdasdas")
+    if(session) return{
+        redirect:{
+            destination:"/main",
+            permanent: false
+        }
+    }
+
+    return {
+        props:{}
+    }
+}

@@ -26,17 +26,18 @@
 
 .loginButtonGithub{
     @include button($color:rgb(250, 245, 245), $background:black);
-}
+}   
 
 .loginButtonGoogle{
-    @include button($color:rgb(88, 88, 88), $background:rgb(226, 217, 217));
+    @include button($color:rgb(88, 88, 88), $background:rgb(255, 255, 255));
+    box-shadow: 0px 3px 0.5px rgb(233, 229, 229);
 }
 
 .logginSubmit{
     @include button($color:rgb(255, 255, 255), $background:rgb(126, 228, 131));
     font-weight: bold;
     border: 3px solid white;
-    box-shadow: 0 0 2px rgb(180, 178, 178);
+   
 }
 
 .formItem{
@@ -64,6 +65,18 @@
         padding: 10px;
         border-radius: 5px;
     }
+}
+.logginRegister{
+display: flex;
+width: 100%;
+color: $greyLetters;
+gap: 10px;
+ button{
+    background-color: transparent;
+    border: none;
+    color: rgb(42, 156, 231);
+    cursor: pointer;
+ }
 }
 
 .name{
