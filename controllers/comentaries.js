@@ -8,5 +8,4 @@ export async function postComentaries(obj) {
     const objectMongo = await Post(obj);
             const result = await objectMongo.save(); 
             return result
-
 }

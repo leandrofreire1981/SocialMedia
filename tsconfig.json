@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/functions/findOrCreateUser.js"],
   "exclude": ["node_modules"]
 
   

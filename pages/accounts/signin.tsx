@@ -12,6 +12,11 @@ export default function signIn(){
 
 export async function getServerSideProps(context:any){
 
+    try {
+        await dbConnect()
+      } catch (error) {
+        console.log('error: ', error)
+      }
     const session = await getSession(context)
 
     if(session) return{
