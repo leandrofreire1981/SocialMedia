@@ -1,5 +1,5 @@
 import next, { NextApiRequest, NextApiResponse } from "next";
-import { deleteUser, getUser, postUser, putUser } from "../../../controllers/users.js"
+import { deleteUser, getUser, postUser, putUser } from "../../../controllers/users.js";
 
 export default async function userRouter (req: NextApiRequest, res: NextApiResponse){
 

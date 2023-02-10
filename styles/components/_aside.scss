@@ -1,0 +1,21 @@
+.asideContainer{
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 30px;
+    align-items: center;
+    height: 100vh;
+    color: $greyLetters;
+    border-right: 1px solid $greyLetters
+}
+.asideImage{
+    border-radius: 50%;
+    width: 100%;
+}
+.asideName {
+
+}
+.asideEmail{
+
+}

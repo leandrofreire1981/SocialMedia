@@ -8,7 +8,7 @@ const {cloudinary} = require('./utils')
     if(ini === "http") result = await cloudinary.uploader.upload(file)
     else{ 
         let a = {archivo: file}
-        result = await cloudinary.uploader.upload(archivo.file)
+        result = await cloudinary.uploader.upload(a.archivo)
     }
     return{
         "profilePictureId":result.public_id,

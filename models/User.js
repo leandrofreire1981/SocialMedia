@@ -16,22 +16,31 @@ const contactsSchema = new Schema({
     },
 })
 
+//? we are gonna keep only the email and name like require fields because we want to be able of store data
+// from (for example) a google's user, so if the user change their profile picture then we are gonna save them
+// using their email like reference
+
 const userSchema = new Schema({
     userName:{
-        type:String,
-        required: true
+        type:String,  
+    },
+    email:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    phone:{
+        type: String,
+        unique: true
     },
     name:{
         type: String,
-        required: true
     },
     lastName:{
-        type: String,
-        required: true
+        type: String,        
     },
     birthDate:{
         type: String,
-        required: true
     },
     publications:{
         type: Array
@@ -44,7 +53,6 @@ const userSchema = new Schema({
     },
     photos:[photoSchema],
     social: contactsSchema
-
 })
 
 export const User = mongoose.models.User || model("User", userSchema);
